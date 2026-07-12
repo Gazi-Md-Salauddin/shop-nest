@@ -35,7 +35,7 @@ export default function Hero() {
             </p>
 
             <div className="my-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="default">
                 <Link href="/products">
                   Shop Now
                   <ShoppingBag className="ml-2 h-5 w-5" />

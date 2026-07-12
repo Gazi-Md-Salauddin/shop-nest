@@ -70,12 +70,6 @@ export default function Footer() {
                 <FaLinkedinIn size={18} />
               </Link>
 
-              <Link
-                href="#"
-                className="rounded-full bg-slate-800 p-2 transition hover:bg-white hover:text-black"
-              >
-                <FaGithub size={18} />
-              </Link>
             </div>
           </div>
 
