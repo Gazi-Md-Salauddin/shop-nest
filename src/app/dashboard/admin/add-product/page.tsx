@@ -1,4 +1,4 @@
-const [errors, setErrors] = useState({});"use client";
+"use client";
 
 import { useState, FormEvent, ChangeEvent } from "react";
 import { Button } from "@/components/ui/Button";

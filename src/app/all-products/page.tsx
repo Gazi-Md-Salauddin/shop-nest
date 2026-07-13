@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Product {
   _id: string;
@@ -102,13 +103,9 @@ export default function AllProductsPage() {
                   </span>
                 </p>
 
-                <p className="text-sm text-gray-600 line-clamp-3">
-                  {product.description}
-                </p>
-
-                <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                <Link href={`/all-products/${product._id}`} className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           ))}
