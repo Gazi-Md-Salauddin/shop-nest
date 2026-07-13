@@ -160,7 +160,7 @@ export default function ManageProductsPage() {
                   <div className="flex justify-center gap-3">
 
                     <Link
-                      href={`/dashboard/admin/update-product/${product._id}`}
+                      href={`/dashboard/admin/manage-products/update-product/${product._id}`}
                     >
                       <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
                         Update
@@ -239,7 +239,7 @@ export default function ManageProductsPage() {
             <div className="mt-5 flex gap-3">
 
               <Link
-                href={`/dashboard/admin/update-product/${product._id}`}
+                href={`/dashboard/admin/manage-products/update-product/${product._id}`}
                 className="flex-1"
               >
                 <button className="w-full rounded bg-blue-600 py-2 text-white">

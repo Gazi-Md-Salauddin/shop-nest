@@ -103,7 +103,7 @@ export default function AllProductsPage() {
                   </span>
                 </p>
 
-                <Link href={`/all-products/${product._id}`} className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                <Link href={`/all-products/${product._id}`} className="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700">
                   View Details
                 </Link>
               </div>
