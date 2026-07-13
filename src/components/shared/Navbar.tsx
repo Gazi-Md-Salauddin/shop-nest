@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import { signOut } from "@/lib/auth-client";
 
 const Navbar = (): React.JSX.Element => {
   const userData = authClient.useSession();
@@ -14,6 +15,11 @@ const Navbar = (): React.JSX.Element => {
   const closeMenu = (): void => {
     setIsOpen(false);
   };
+
+
+  const handleSignOut = async() => {
+      await signOut();
+    }
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200/50 bg-white/80 backdrop-blur-lg dark:border-slate-800 dark:bg-slate-950/80">
@@ -58,7 +64,7 @@ const Navbar = (): React.JSX.Element => {
                     <h2>
                         Hi, {user?.name}
                     </h2>
-        <button className="bg-red-500 text-white p-2 rounded-full">Logout</button>
+        <button onClick={handleSignOut} className="bg-red-500 text-white p-2 rounded-full">Logout</button>
                 </div>
         ) : (
           
@@ -128,7 +134,7 @@ const Navbar = (): React.JSX.Element => {
                     <h2>
                         Hi, {user?.name}
                     </h2>
-        <button className="bg-red-500 text-white p-2 rounded-md">Logout</button>
+        <button onClick={handleSignOut} className="bg-red-500 text-white p-2 rounded-md">Logout</button>
                 </div>) : (
           <ul className="flex gap-2">
           <li>

@@ -42,7 +42,7 @@ export default function RegisterPage() {
 
   if (data) {
     alert("Successfully Registered");
-    router.push("/login");
+    router.push("/auth/login");
   }
 };
 

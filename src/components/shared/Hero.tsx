@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import HeroImage from '@/app/images/heroImage.jpeg'
+import CountUp from "react-countup";
 
 export default function Hero() {
   return (
@@ -36,14 +37,14 @@ export default function Hero() {
 
             <div className="my-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               <Button asChild size="lg" variant="default">
-                <Link href="/products">
+                <Link href="/all-products">
                   Shop Now
                   <ShoppingBag className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
 
               <Button variant="outline" size="lg" asChild>
-                <Link href="/categories">
+                <Link href="/">
                   Browse Categories
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -79,17 +80,20 @@ export default function Hero() {
             {/* Stats */}
             <div className="mt-12 grid grid-cols-3 gap-6 border-t pt-8">
               <div>
-                <h3 className="text-2xl font-bold text-slate-900">10K+</h3>
+                <h3 className="text-2xl font-bold text-slate-900"><CountUp end={10} duration={3} separator="," enableScrollSpy
+  scrollSpyOnce/>K+</h3>
                 <p className="text-sm text-slate-500">Happy Customers</p>
               </div>
 
               <div>
-                <h3 className="text-2xl font-bold text-slate-900">500+</h3>
+                <h3 className="text-2xl font-bold text-slate-900"><CountUp end={500} duration={3} separator="," enableScrollSpy
+  scrollSpyOnce/>+</h3>
                 <p className="text-sm text-slate-500">Products</p>
               </div>
 
               <div>
-                <h3 className="text-2xl font-bold text-slate-900">24/7</h3>
+                <h3 className="text-2xl font-bold text-slate-900"><CountUp end={24} duration={3} separator="," enableScrollSpy
+  scrollSpyOnce/>/7</h3>
                 <p className="text-sm text-slate-500">Support</p>
               </div>
             </div>

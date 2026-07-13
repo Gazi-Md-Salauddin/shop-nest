@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/sheet";
 
 import { Button } from "@/components/ui/Button";
+import { signOut } from "@/lib/auth-client";
+
 
 const menuItems = [
   {
@@ -40,16 +42,17 @@ const menuItems = [
     href: "/dashboard/admin/manage-order",
     icon: ShoppingCart,
   },
-  {
-    title: "Settings",
-    href: "/dashboard/admin/settings",
-    icon: Settings,
-  },
+  
 ];
 
 function SidebarContent() {
   const pathname = usePathname();
 
+
+  const handleSignOut = async() => {
+      await signOut();
+    }
+  
   return (
     <div className="flex flex-col bg-white">
       
@@ -76,13 +79,13 @@ function SidebarContent() {
       </nav>
 
       <div className="border-t p-4">
-        <Button
-          variant="destructive"
+        <button
+          onClick={handleSignOut}
           className="w-full justify-start"
         >
           <LogOut className="mr-2 h-5 w-5" />
           Logout
-        </Button>
+        </button>
       </div>
     </div>
   );
