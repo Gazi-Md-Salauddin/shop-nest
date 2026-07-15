@@ -121,7 +121,7 @@ const Navbar = (): React.JSX.Element => {
               All Products
             </Link>
             {user && (
-  user.role === "admin" ? (
+  (user as any).role === "admin" ? (
     <Link className="font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300" href="/dashboard/admin">Dashboard</Link>
   ) : (
     <Link className="font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300" href="/my-orders">My Orders</Link>
