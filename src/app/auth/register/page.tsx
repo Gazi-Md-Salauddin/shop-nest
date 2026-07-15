@@ -33,7 +33,6 @@ export default function RegisterPage() {
     name,
     email,
     password,
-    role: "user",
   });
 
   if (error) {
