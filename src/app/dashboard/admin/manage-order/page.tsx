@@ -5,7 +5,6 @@ import Image from "next/image";
 import DeleteConfirmationModal from "@/components/dashboard/DeleteConfirmationModal";
 import { Trash2 } from 'lucide-react';
 
-
 interface Order {
   _id: string;
   productName: string;
@@ -44,7 +43,7 @@ export default function ManageOrdersPage() {
     } catch (error) {
       console.error(error);
       setOrders([]);
-    } finally {
+    } finaly {
       setLoading(false);
     }
   };
@@ -76,11 +75,13 @@ export default function ManageOrdersPage() {
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async () => {
+    if (!deleteId) return;
 
     try {
+      setIsDeleting(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders/${deleteId}`,
         {
           method: "DELETE",
         }
@@ -90,11 +91,14 @@ export default function ManageOrdersPage() {
 
       if (result.success) {
         setOrders((prev) =>
-          prev.filter((order) => order._id !== id)
+          prev.filter((order) => order._id !== deleteId)
         );
+        setDeleteId(null);
       }
     } catch (error) {
       console.error(error);
+    } finaly {
+      setIsDeleting(false);
     }
   };
 
@@ -102,13 +106,10 @@ export default function ManageOrdersPage() {
     switch (status.toLowerCase()) {
       case "pending":
         return "bg-yellow-500/20 text-yellow-500";
-
       case "approved":
         return "bg-green-500/20 text-green-500";
-
       case "cancelled":
         return "bg-red-500/20 text-red-500";
-
       default:
         return "bg-blue-500/20 text-blue-500";
     }
@@ -135,12 +136,9 @@ export default function ManageOrdersPage() {
         </span>
       </div>
 
-      {/* Desktop */}
-
+      {/* Desktop View */}
       <div className="hidden overflow-x-auto rounded-xl border lg:block">
-
         <table className="w-full">
-
           <thead className="bg-gray-100">
             <tr>
               <th className="p-4 text-left">Image</th>
@@ -157,7 +155,6 @@ export default function ManageOrdersPage() {
           <tbody>
             {orders.map((order) => (
               <tr key={order._id} className="border-t">
-
                 <td className="p-4">
                   <Image
                     src={order.image}
@@ -185,56 +182,41 @@ export default function ManageOrdersPage() {
                 <td>
                   <div className="flex gap-2">
                     <button
-                      onClick={() =>
-                        handleStatus(order._id, "Approved")
-                      }
+                      onClick={() => handleStatus(order._id, "Approved")}
                       className="rounded bg-green-600 px-3 py-2 text-sm text-white"
                     >
                       Approve
                     </button>
 
                     <button
-                      onClick={() =>
-                        handleStatus(order._id, "Cancelled")
-                      }
+                      onClick={() => handleStatus(order._id, "Cancelled")}
                       className="rounded bg-yellow-500 px-3 py-2 text-sm text-white"
                     >
                       Cancel
                     </button>
 
+                    
                     <button
-                      onClick={() => handleDelete(order._id)}
+                      onClick={() => setDeleteId(order._id)}
                       className="rounded bg-red-600 px-3 py-2 text-sm text-white"
                     >
                       Delete
                     </button>
-                    <DeleteConfirmationModal
-  isOpen={!!deleteId}
-  isDeleting={isDeleting}
-  onClose={() => setDeleteId(null)}
-  onConfirm={handleDelete}
-/>
                   </div>
                 </td>
-
               </tr>
             ))}
           </tbody>
-
         </table>
-
       </div>
 
-      {/* Mobile */}
-
+      {/* Mobile View */}
       <div className="space-y-5 lg:hidden">
-
         {orders.map((order) => (
           <div
             key={order._id}
             className="rounded-xl border p-4 shadow"
           >
-
             <Image
               src={order.image}
               alt={order.productName}
@@ -248,68 +230,49 @@ export default function ManageOrdersPage() {
             </h2>
 
             <div className="mt-3 space-y-2 text-sm">
-
-              <p>
-                <strong>User:</strong> {order.userName}
-              </p>
-
-              <p>
-                <strong>Email:</strong> {order.userEmail}
-              </p>
-
-              <p>
-                <strong>Price:</strong> ${order.price}
-              </p>
-
-              <p>
-                <strong>Quantity:</strong> {order.quantity}
-              </p>
-
-              <span
-                className={`inline-block rounded px-3 py-1 ${getStatusColor(order.status)}`}
-              >
+              <p><strong>User:</strong> {order.userName}</p>
+              <p><strong>Email:</strong> {order.userEmail}</p>
+              <p><strong>Price:</strong> ${order.price}</p>
+              <p><strong>Quantity:</strong> {order.quantity}</p>
+              <span className={`inline-block rounded px-3 py-1 ${getStatusColor(order.status)}`}>
                 {order.status}
               </span>
-
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-2">
-
               <button
-                onClick={() => handleStatus(order._id, "Approved")
-                }
+                onClick={() => handleStatus(order._id, "Approved")}
                 className="rounded bg-green-600 py-2 text-sm text-white"
               >
                 Approve
               </button>
 
               <button
-                onClick={() => handleStatus(order._id, "Cancelled")
-                }
+                onClick={() => handleStatus(order._id, "Cancelled")}
                 className="rounded bg-yellow-500 py-2 text-sm text-white"
               >
                 Cancel
               </button>
 
+            
               <button
-                onClick={() => handleDelete(order._id)}
+                onClick={() => setDeleteId(order._id)}
                 className="rounded bg-red-600 py-2 text-sm text-white"
               >
                 Delete
               </button>
-              <DeleteConfirmationModal
-  isOpen={!!deleteId}
-  isDeleting={isDeleting}
-  onClose={() => setDeleteId(null)}
-  onConfirm={handleDelete}
-/>
-
             </div>
-
           </div>
         ))}
-
       </div>
+
+      
+      <DeleteConfirmationModal
+        isOpen={!!deleteId}
+        isDeleting={isDeleting}
+        onClose={() => setDeleteId(null)}
+        onConfirm={handleDelete}
+      />
 
     </div>
   );
