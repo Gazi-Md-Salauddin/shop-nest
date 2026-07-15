@@ -114,8 +114,10 @@ const [errors, setErrors] = useState<Errors>({});
   const handleImageUpload = async (
   e: ChangeEvent<HTMLInputElement>
 ): Promise<void> => {
-        const file = e.target.files[0];
-        if (!file) return;
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+
+        const file = files[0];
 
         // Simple Validation
         if (file.size > 5 * 1024 * 1024) {
