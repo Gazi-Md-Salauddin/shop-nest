@@ -166,14 +166,14 @@ export default function ManageProductsPage() {
                     <Link
                       href={`/dashboard/admin/manage-products/update-product/${product._id}`}
                     >
-                      <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+                      <button className="flex gap-2 items-center rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
                        <SquarePen/>Update
                       </button>
                     </Link>
 
                     <button
   onClick={() => setDeleteId(product._id)}
-  className="rounded bg-red-600 px-4 py-2 text-white"
+  className="rounded bg-red-600 px-4 py-2 text-white flex gap-2 items-center"
 >
                     <Trash2/>Delete
 </button>
@@ -246,16 +246,16 @@ export default function ManageProductsPage() {
                 href={`/dashboard/admin/manage-products/update-product/${product._id}`}
                 className="flex-1"
               >
-                <button className="w-full rounded bg-blue-600 py-2 text-white">
+                <button className="w-full rounded bg-blue-600 py-2 text-white flex gap-2 items-center">
                  <SquarePen/>Update
                 </button>
               </Link>
 
               <button
   onClick={() => setDeleteId(product._id)}
-  className="rounded bg-red-600 px-4 py-2 text-white"
+  className="rounded bg-red-600 px-4 py-2 text-white flex gap-2 items-center"
 >
-              <Trash2/> Delete
+              <Trash2/>Delete
 </button>
 
               <DeleteConfirmationModal
