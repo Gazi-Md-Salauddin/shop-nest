@@ -100,8 +100,8 @@ const [errors, setErrors] = useState<Errors>({});
         toast.error(`Failed to add product: ${result.message}`);
       }
     } catch (error) {
-    
-      toast.error(error);
+      console.error("Frontend Submit Error:", error);
+      toast.error((error as any).message || "Something went wrong!");
     }
   };
 
