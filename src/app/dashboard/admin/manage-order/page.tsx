@@ -43,7 +43,7 @@ export default function ManageOrdersPage() {
     } catch (error) {
       console.error(error);
       setOrders([]);
-    } finaly {
+    } finally {
       setLoading(false);
     }
   };
