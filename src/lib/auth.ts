@@ -11,6 +11,14 @@ export const auth = betterAuth({
         // Optional: if you don't provide a client, database transactions won't be enabled.
         client,
     }),
+  baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_BASE_URL,
+    advanced: {
+        trustedOrigins: [
+            process.env.BETTER_AUTH_URL || "",
+            process.env.NEXT_PUBLIC_BASE_URL || ""
+        ]
+    },
+  
   emailAndPassword: { 
     enabled: true, 
   }, 
