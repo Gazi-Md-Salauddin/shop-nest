@@ -36,7 +36,7 @@ export default function RegisterPage() {
   });
 
   if (error) {
-    toast.error(error.message);
+    toast.error("Something went wrong");
     return;
   }
 
