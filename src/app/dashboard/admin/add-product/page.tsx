@@ -4,6 +4,9 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ArrowUpToLine } from 'lucide-react';
+import { toast } from 'react-hot-toast';
+
 
 // Define for form state TypeScript Interface
 interface FormState {
@@ -83,7 +86,7 @@ const [errors, setErrors] = useState<Errors>({});
       const result = await response.json();
 
       if (result.success) {
-        alert("Product added successfully to MongoDB!");
+        toast.success("Product added successfully to MongoDB!");
         setFormData({
           name: "",
           brand: "",
@@ -94,11 +97,11 @@ const [errors, setErrors] = useState<Errors>({});
           description: ""
         });
       } else {
-        alert(`Failed to add product: ${result.message}`);
+        toast.error(`Failed to add product: ${result.message}`);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Something went wrong!");
+    
+      toast.error("Something went wrong!");
     }
   };
 
@@ -249,7 +252,7 @@ const [errors, setErrors] = useState<Errors>({});
           className="w-full h-full object-cover"
         />
       ) : (
-        <p>Arrow</p>
+        <p><ArrowUpToLine/></p>
       )}
     </Label>
 

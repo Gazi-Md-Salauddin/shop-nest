@@ -2,6 +2,7 @@
 
 import { use, useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from 'react-hot-toast';
 
 interface Product {
   name: string;
@@ -92,10 +93,10 @@ export default function UpdateProductPage({
       const result = await res.json();
 
       if (result.success) {
-        alert("Product updated successfully.");
+        toast.success("Product updated successfully.");
         router.push("/dashboard/admin/manage-products");
       } else {
-        alert(result.message);
+        toast.error(result.message);
       }
     } catch (error) {
       console.log(error);

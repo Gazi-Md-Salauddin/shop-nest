@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { toast } from 'react-hot-toast';
 
 interface Product {
   _id: string;
@@ -47,8 +48,8 @@ export default function ProductDetailsPage() {
 
   const handleBuyNow = async () => {
     if (!session) {
-      alert("Please login first");
-      router.push("/login");
+      toast.error("Please login first");
+      router.push("/auth/login");
       return;
     }
 
@@ -81,10 +82,10 @@ export default function ProductDetailsPage() {
       const result = await res.json();
 
       if (result.success) {
-        alert("Order placed successfully");
+        toast.success("Order placed successfully");
         router.push("/my-orders");
       } else {
-        alert(result.message);
+        toast.error(result.message);
       }
     } catch (error) {
       console.log(error);

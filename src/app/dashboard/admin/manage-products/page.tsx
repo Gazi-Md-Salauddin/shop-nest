@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DeleteConfirmationModal from "@/components/dashboard/DeleteConfirmationModal";
+import { Trash2 } from 'lucide-react';
+import { SquarePen } from 'lucide-react';
+
 
 interface Product {
   _id: string;
@@ -63,6 +66,7 @@ export default function ManageProductsPage() {
       setProducts((prev) =>
         prev.filter((item) => item._id !== deleteId)
       );
+      
     }
   } finally {
     setDeleteId(null);
@@ -163,7 +167,7 @@ export default function ManageProductsPage() {
                       href={`/dashboard/admin/manage-products/update-product/${product._id}`}
                     >
                       <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                        Update
+                       <SquarePen/>Update
                       </button>
                     </Link>
 
@@ -171,7 +175,7 @@ export default function ManageProductsPage() {
   onClick={() => setDeleteId(product._id)}
   className="rounded bg-red-600 px-4 py-2 text-white"
 >
-  Delete
+                    <Trash2/>Delete
 </button>
 
                   </div>
@@ -243,7 +247,7 @@ export default function ManageProductsPage() {
                 className="flex-1"
               >
                 <button className="w-full rounded bg-blue-600 py-2 text-white">
-                  Update
+                 <SquarePen/>Update
                 </button>
               </Link>
 
@@ -251,7 +255,7 @@ export default function ManageProductsPage() {
   onClick={() => setDeleteId(product._id)}
   className="rounded bg-red-600 px-4 py-2 text-white"
 >
-  Delete
+              <Trash2/> Delete
 </button>
 
               <DeleteConfirmationModal

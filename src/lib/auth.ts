@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from "mongodb"; // your mongodb client
+import { jwt } from "better-auth/plugins"
 
 const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db("shop-nest");
@@ -20,5 +21,16 @@ export const auth = betterAuth({
       defaultValue: "user",
     },
   },
-}
+},
+
+  session: {
+      cookieCache: {
+        enabled: true,
+        strategy: "jwt",
+        maxAge: 7 * 24 * 60 * 60
+      }
+    },
+    plugins: [
+        jwt(), 
+    ]
 });

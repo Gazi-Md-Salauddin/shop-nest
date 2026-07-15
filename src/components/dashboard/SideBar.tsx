@@ -7,8 +7,8 @@ import {
   Package,
   ShoppingCart,
   Users,
-  Settings,
   LogOut,
+  SquarePlus,
 } from "lucide-react";
 
 import {
@@ -30,7 +30,7 @@ const menuItems = [
   {
     title: "Add Product",
     href: "/dashboard/admin/add-product",
-    icon: Package,
+    icon: SquarePlus,
   },
   {
     title: "Manage Products",
@@ -79,13 +79,13 @@ function SidebarContent() {
       </nav>
 
       <div className="border-t p-4">
-        <button
+        <Button
           onClick={handleSignOut}
-          className="w-full justify-start"
+          className="w-full justify-start bg-red-500 text-white"
         >
           <LogOut className="mr-2 h-5 w-5" />
           Logout
-        </button>
+        </Button>
       </div>
     </div>
   );

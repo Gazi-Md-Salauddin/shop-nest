@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { FormEvent } from "react";
 import { useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth-client'
+import { toast } from 'react-hot-toast';
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,12 +37,12 @@ export default function RegisterPage() {
   });
 
   if (error) {
-    alert(error.message);
+    toast.error(error.message);
     return;
   }
 
   if (data) {
-    alert("Successfully Registered");
+    toast.success("Successfully Registered");
     router.push("/auth/login");
   }
 };
