@@ -3,7 +3,7 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from "mongodb"; // your mongodb client
 import { jwt } from "better-auth/plugins"
 
-const client = new MongoClient(process.env.MONGODB_URI);
+const client = new MongoClient(process.env.MONGODB_URI!);
 const db = client.db("shop-nest");
 
 export const auth = betterAuth({
