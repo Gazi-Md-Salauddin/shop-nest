@@ -86,7 +86,7 @@ const [errors, setErrors] = useState<Errors>({});
       const result = await response.json();
 
       if (result.success) {
-        toast.success("Product added successfully to MongoDB!");
+        toast.success("Product added successfully");
         setFormData({
           name: "",
           brand: "",
@@ -101,7 +101,7 @@ const [errors, setErrors] = useState<Errors>({});
       }
     } catch (error) {
     
-      toast.error("Something went wrong!");
+      toast.error(error);
     }
   };
 
