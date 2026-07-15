@@ -52,7 +52,7 @@ const handleGoogleSignIn = async (): Promise<void> => {
   });
 
   if (error) {
-    toast.error(error.message);
+    toast.error("Something went wrong");
   }
 };
   
