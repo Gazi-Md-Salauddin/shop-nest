@@ -97,7 +97,7 @@ export default function ManageOrdersPage() {
       }
     } catch (error) {
       console.error(error);
-    } finaly {
+    } finally {
       setIsDeleting(false);
     }
   };
