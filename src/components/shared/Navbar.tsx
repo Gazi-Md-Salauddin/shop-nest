@@ -50,7 +50,7 @@ const Navbar = (): React.JSX.Element => {
             All Products
           </Link>
           {user && (
-  user.role === "admin" ? (
+  (user as any).role === "admin" ? (
     <Link href="/dashboard/admin">Dashboard</Link>
   ) : (
     <Link href="/my-orders">My Orders</Link>
