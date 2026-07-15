@@ -85,7 +85,9 @@ export default function UpdateProductPage({
           },
           body: JSON.stringify({
             ...formData,
-            inStock: formData.stock > 0,
+            price: Number(formData.price),
+      stock: Number(formData.stock), 
+      inStock: Number(formData.stock) > 0,
           }),
         }
       );
@@ -96,7 +98,7 @@ export default function UpdateProductPage({
         toast.success("Product updated successfully.");
         router.push("/dashboard/admin/manage-products");
       } else {
-        toast.error(result.message);
+        toast.error("Something went wrong");
       }
     } catch (error) {
       console.log(error);
